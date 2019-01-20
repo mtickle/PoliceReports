@@ -16,15 +16,28 @@ $('#btnGenerate').click(function () {
           var output="<dl>";
 
         $.each(json_obj.features, function(i, item) {
-            output+="<dt>" + json_obj.features[i].attributes.crime_description + "</dt>";
-            output+="<dd>" + json_obj.features[i].attributes.reported_dayofwk + "</dd>";
-            output+="<dd>" + json_obj.features[i].attributes.district + "</dd>";
-            //console.log(json_obj.features[i].attributes.crime_code)
+
+          if(json_obj.features[i].attributes.crime_category != "MISCELLANEOUS") {
+
+            var crime_description = json_obj.features[i].attributes.crime_description;
+            var reported_date = json_obj.features[i].attributes.reported_date;
+            var reported_block_address = json_obj.features[i].attributes.reported_block_address;
+            var district = json_obj.features[i].attributes.district;
+
+            var clean_reported_date = moment(reported_date).format('dddd, MMMM Do, YYYY h:mm:ss A')
+            //var clean_reported_date = moment(reported_date).format('dddd');
+
+            output+="<dt>" + crime_description + "</dt>";
+            output+="<dd>" + clean_reported_date + "</dd>";
+            output+="<dd>" + reported_block_address + "</dd>";
+            output+="<dd>" + district + "</dd>";
+
+          }
         })
 
           output+="</dl>";
 
         $('#lblOutput').html(output);
 
-
-
+      });
+    });
