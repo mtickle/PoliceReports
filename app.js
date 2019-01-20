@@ -26,8 +26,5 @@ $('#btnGenerate').click(function () {
 
         $('#lblOutput').html(output);
 
-        console.log(json_obj);
-
-
 
 
