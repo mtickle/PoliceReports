@@ -12,6 +12,8 @@ $('#btnGenerate').click(function () {
         tmpString = tmpString.slice(reportStartIndex)
         tmpString = "{\"" + tmpString;
         var json_obj = JSON.parse(tmpString);
+
+      
         
           var output="<dl>";
 
@@ -20,17 +22,21 @@ $('#btnGenerate').click(function () {
           if(json_obj.features[i].attributes.crime_category != "MISCELLANEOUS") {
 
             var crime_description = json_obj.features[i].attributes.crime_description;
+            var created_date = json_obj.features[i].attributes.created_date;
             var reported_date = json_obj.features[i].attributes.reported_date;
             var reported_block_address = json_obj.features[i].attributes.reported_block_address;
             var district = json_obj.features[i].attributes.district;
+            var GlobalID = json_obj.features[i].attributes.GlobalID;
 
             var clean_reported_date = moment(reported_date).format('dddd, MMMM Do, YYYY h:mm:ss A')
+            var clean_created_date = moment(created_date).format('dddd, MMMM Do, YYYY h:mm:ss A')
             //var clean_reported_date = moment(reported_date).format('dddd');
 
             output+="<dt>" + crime_description + "</dt>";
-            output+="<dd>" + clean_reported_date + "</dd>";
-            output+="<dd>" + reported_block_address + "</dd>";
-            output+="<dd>" + district + "</dd>";
+            output+="<dd>Reported: " + clean_reported_date + "</dd>";
+            output+="<dd>Created: " + clean_created_date + "</dd>";
+            output+="<dd>Address: " + reported_block_address + "</dd>";
+            output+="<dd>" + GlobalID + "</dd>";
 
           }
         })
