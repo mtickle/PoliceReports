@@ -15,11 +15,14 @@ $('#btnGenerate').click(function () {
 
       //--- testiung github
         
-          var output="<dl>";
+      var output="";
+          
 
         $.each(json_obj.features, function(i, item) {
 
           if(json_obj.features[i].attributes.crime_category != "MISCELLANEOUS") {
+
+
 
             var crime_description = json_obj.features[i].attributes.crime_description;
             var created_date = json_obj.features[i].attributes.created_date;
@@ -32,16 +35,22 @@ $('#btnGenerate').click(function () {
             var clean_created_date = moment(created_date).format('dddd, MMMM Do, YYYY h:mm:ss A')
             //var clean_reported_date = moment(reported_date).format('dddd');
 
-            output+="<dt>" + crime_description + "</dt>";
-            output+="<dd>Reported: " + clean_reported_date + "</dd>";
-            output+="<dd>Created: " + clean_created_date + "</dd>";
-            output+="<dd>Address: " + reported_block_address + "</dd>";
-            output+="<dd>" + GlobalID + "</dd>";
-
+            output+="<div class=\"card\" style=\"width: 32rem;\">";
+            output+=" <img class=\"card-img-top\" src=\"austin.png\" alt=\"Card image cap\">";
+            output+="   <div class=\"card-body\">";
+            output+="     <h5 class=\"card-title\">" + crime_description + "</h5>";
+            output+="     <p class=\"card-text\">";
+            output+="       Reported: " + clean_reported_date + "<br>";
+            output+="       Created: " + clean_created_date + "<br>";
+            output+="       Address: " + reported_block_address + "<br>";
+            output+="     </p>"
+            output+="   </div>";
+            output+="</div>";
+            output+="<br>";
           }
         })
 
-          output+="</dl>";
+       
 
         $('#lblOutput').html(output);
 
