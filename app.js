@@ -24,6 +24,7 @@ $('#btnGenerate').click(function () {
         tmpString = tmpString.slice(reportStartIndex)
         tmpString = "{\"" + tmpString;
         var json_obj = JSON.parse(tmpString);
+        
 
       //--- Start looping through the FEATURES elements of the JSON.
         $.each(json_obj.features, function(i, item) {
@@ -38,6 +39,7 @@ $('#btnGenerate').click(function () {
             var reported_block_address = json_obj.features[i].attributes.reported_block_address;
             var latitude = json_obj.features[i].attributes.latitude;
             var longitude = json_obj.features[i].attributes.longitude;
+            var district = json_obj.features[i].attributes.district;
 
             //--- Build up the URL for the maps image.
             var map_url ="https://maps.googleapis.com/maps/api/staticmap?center=Raleigh,NC&zoom=10&size=666x333&maptype=roadmap";
@@ -49,12 +51,13 @@ $('#btnGenerate').click(function () {
 
             //--- Put together the HTML in the form of a Bootstrap Card.
             output+="<div class=\"card\" style=\"width: 100%;\">";
-            output+=" <img class=\"card-img-top\" src=\"" + map_url + "\" alt=\"Card image cap\">";
+            //output+=" <img class=\"card-img-top\" src=\"" + map_url + "\" alt=\"Card image cap\">";
             output+="   <div class=\"card-body\">";
             output+="     <h5 class=\"card-title\">" + crime_description + "</h5>";
             output+="     <p class=\"card-text\">";
+            output+="       District: " + district + "<br>";
             output+="       Reported: " + clean_reported_date + "<br>";
-            output+="       Created: " + clean_created_date + "<br>";
+            //output+="       Created: " + clean_created_date + "<br>";
             output+="       Address: " + reported_block_address + "<br>";
             output+="     </p>"
             output+="   </div>";
