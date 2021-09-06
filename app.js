@@ -13,8 +13,6 @@ $(document).ready(function(){
 $('#btnGenerate').click(function () {
     $.getJSON(base_url, function (data) {
 
-      //--- Declarations
-      var output=""; //--- Used to hold the HTML output.
 
       //--- The JSON from the source comes with a lot of junk in it, so we want 
       //--- to clean it up real good and check the formatting before we call 
@@ -24,7 +22,7 @@ $('#btnGenerate').click(function () {
         tmpString = tmpString.slice(reportStartIndex)
         tmpString = "{\"" + tmpString;
         var json_obj = JSON.parse(tmpString);
-        
+        var output = "";
 
       //--- Start looping through the FEATURES elements of the JSON.
         $.each(json_obj.features, function(i, item) {
