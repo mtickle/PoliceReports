@@ -16,12 +16,28 @@ $('#btnGenerate').click(function () {
       //--- The JSON from the source comes with a lot of junk in it, so we want 
       //--- to clean it up real good and check the formatting before we call 
       //--- JSON.parse.
-        var tmpString = JSON.stringify(data);
+      var output = "";  
+      var tmpString = JSON.stringify(data);
         var reportStartIndex = tmpString.indexOf("features");
         tmpString = tmpString.slice(reportStartIndex)
         tmpString = "{\"" + tmpString;
+        
         var json_obj = JSON.parse(tmpString);
-        var output = "";
+
+        // text.sort(function(a, b) {
+        //   var nameA = a.clean_reported_date; // ignore upper and lowercase
+        //   var nameB = b.clean_reported_date; // ignore upper and lowercase
+        //   if (nameA < nameB) {
+        //     return -1;
+        //   }
+        //   if (nameA > nameB) {
+        //     return 1;
+        //   }
+        
+        //   // names must be equal
+        //   return 0;
+        // });
+       
 
       //--- Start looping through the FEATURES elements of the JSON.
         $.each(json_obj.features, function(i, item) {
