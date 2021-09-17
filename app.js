@@ -41,7 +41,7 @@ $('#btnGenerate').click(function () {
 
             //--- Build up the URL for the maps image.
             var map_url ="https://maps.googleapis.com/maps/api/staticmap?center=Raleigh,NC&zoom=10&size=666x333&maptype=roadmap";
-            map_url+="&markers=size:small|color:red|" + latitude + "," + longitude + "&key=AIzaSyDuM0x9jHBgjkS8dI_oGlh4xbCoiy_vUVk";
+            map_url+="&markers=size:small|color:red|" + latitude + "," + longitude + "&key=AIzaSyCAZiKpruXYY5acqXt9IMFZkVqPoic7RWI";
 
             //--- Clean up and convert those pesky epoch dates.
             var clean_reported_date = moment(reported_date).format('dddd, MMMM Do, YYYY h:mm:ss A')
