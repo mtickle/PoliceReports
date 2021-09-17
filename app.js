@@ -9,7 +9,6 @@ $(document).ready(function(){
   $("#btnGenerate").click(); 
 })
 
-
 $('#btnGenerate').click(function () {
     $.getJSON(base_url, function (data) {
 
@@ -40,8 +39,14 @@ $('#btnGenerate').click(function () {
             var district = json_obj.features[i].attributes.district;
 
             //--- Build up the URL for the maps image.
-            var map_url ="https://maps.googleapis.com/maps/api/staticmap?center=Raleigh,NC&zoom=10&size=666x333&maptype=roadmap";
-            map_url+="&markers=size:small|color:red|" + latitude + "," + longitude + "&key=AIzaSyDuM0x9jHBgjkS8dI_oGlh4xbCoiy_vUVk";
+            var map_url ="https://maps.googleapis.com/maps/api/staticmap?"
+            map_url+="&size=666x333";
+            map_url+="&scale=1";
+            map_url+="&maptype=roadmap";
+            map_url+="&zoom=14";
+            map_url+="&center=" + latitude + "," + longitude;
+            map_url+="&markers=size:small|color:red|" + latitude + "," + longitude;
+            map_url+="&key=AIzaSyCAZiKpruXYY5acqXt9IMFZkVqPoic7RWI";
 
             //--- Clean up and convert those pesky epoch dates.
             var clean_reported_date = moment(reported_date).format('dddd, MMMM Do, YYYY h:mm:ss A')
@@ -49,7 +54,7 @@ $('#btnGenerate').click(function () {
 
             //--- Put together the HTML in the form of a Bootstrap Card.
             output+="<div class=\"card\" style=\"width: 100%;\">";
-            //output+=" <img class=\"card-img-top\" src=\"" + map_url + "\" alt=\"Card image cap\">";
+            output+=" <img class=\"card-img-top\" src=\"" + map_url + "\" alt=\"Card image cap\">";
             output+="   <div class=\"card-body\">";
             output+="     <h5 class=\"card-title\">" + crime_description + "</h5>";
             output+="     <p class=\"card-text\">";
